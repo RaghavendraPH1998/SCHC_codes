@@ -1,0 +1,15 @@
+class CDA:
+    def __init__(self,cda_values,field):
+        self.cda_values = cda_values #cda values from Rules class
+        self.field = field 
+        self.compressed_header = ""
+
+    def compression_action(self,header_fields):
+        self.header_fields = list(header_fields.values())
+        # the 0x part is removed in the first part of the for loop
+        for i in range(len(self.header_fields)):
+            self.header_fields[i] = self.header_fields[i][2:]
+            #the omission and inclusion of fields is done here based on the rules
+            if self.cda_values[i]==1:
+                self.compressed_header +=self.header_fields[i]
+
